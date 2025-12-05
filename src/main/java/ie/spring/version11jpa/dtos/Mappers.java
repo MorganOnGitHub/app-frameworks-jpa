@@ -7,44 +7,42 @@ import java.util.List;
 
 public class Mappers {
 
-    public static HeroDTO mapHeroToHeroDTO(Moon h){
-        return new HeroDTO(
-                h.getMoonId(),
-                h.getName()+ " " + h.getLastName(),
-                h.getAlias(),
-                h.getOrigin(),
-                h.getUniverse(),
-                h.getDiameterKm(),
-                h.getPlanet() != null ?
-                new CityDTO(h.getPlanet().getPlanetId(), h.getPlanet().getName(), h.getPlanet().getCountry(), null)
-                : null
+    public static MoonDto mapMoonToMoonDTO(Moon m){
+        return new MoonDto(
+                m.getMoonId(),
+                m.getName(),
+                m.getDiameterKm(),
+                m.getOrbitalPeriodDays(),
+                m.getPlanet()
         );
     }
 
-    public static HeroDTO mapHeroToHeroDTONoCity(Moon h){
-        return new HeroDTO(
-                h.getMoonId(),
-                h.getName()+ " " + h.getLastName(),
-                h.getAlias(),
-                h.getOrigin(),
-                h.getUniverse(),
-                h.getDiameterKm(),
-                null
+    public static MoonDto mapMoonToMoonDTONoPlanet(Moon m){
+        return new MoonDto(
+                m.getMoonId(),
+                m.getName(),
+                m.getDiameterKm(),
+                m.getOrbitalPeriodDays(),
+                m.getPlanet()
         );
     }
 
-    public static CityDTO mapCityToCityDTO(Planet c){
-        List<HeroDTO> heroDTOs =
-                c.getMoons()
+    public static PlanetDto mapPlanetToPlanetDTO(Planet p){
+        List<MoonDto> moonDtos =
+                p.getMoons()
                 .stream()
-                .map(Mappers::mapHeroToHeroDTONoCity)
+                .map(Mappers::mapMoonToMoonDTONoPlanet)
                 .toList();
-        return new CityDTO(
-                c.getPlanetId(),
-                c.getName(),
-                c.getCountry(),
-                heroDTOs);
-    };
+        return new PlanetDto(
+                p.getPlanetId(),
+                p.getName(),
+                p.getType(),
+                p.getRadiusKm(),
+                p.getMassKg(),
+                p.getOrbitalPeriodDays(),
+                moonDtos);
+    }
+
 
 }
 

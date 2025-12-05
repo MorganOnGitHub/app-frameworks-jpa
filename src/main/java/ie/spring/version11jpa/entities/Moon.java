@@ -15,8 +15,8 @@ public class Moon {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int moonId;
     private String name;
-    private int diameterKm;
-    private int orbitalPeriodDays;
+    private float diameterKm;
+    private float orbitalPeriodDays;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="planet_id")

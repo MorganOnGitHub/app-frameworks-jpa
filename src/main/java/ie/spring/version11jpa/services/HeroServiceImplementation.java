@@ -1,6 +1,6 @@
 package ie.spring.version11jpa.services;
 
-import ie.spring.version11jpa.dtos.HeroDTO;
+import ie.spring.version11jpa.dtos.MoonDto;
 import ie.spring.version11jpa.dtos.Mappers;
 import ie.spring.version11jpa.dtos.Name;
 import ie.spring.version11jpa.exceptions.NotFoundException;
@@ -16,11 +16,11 @@ public class HeroServiceImplementation implements HeroService {
     private HeroRepository heroRepository;
 
     @Override
-    public List<HeroDTO> findAll() {
+    public List<MoonDto> findAll() {
         return heroRepository
                 .findAll()
                 .stream()
-                .map(Mappers::mapHeroToHeroDTO)
+                .map(Mappers::mapMoonToMoonDTO)
                 .toList();
     }
 
@@ -42,7 +42,7 @@ public class HeroServiceImplementation implements HeroService {
     }
 
     @Override
-    public List<HeroDTO> findAllInCity(String cityName) {
+    public List<MoonDto> findAllInCity(String cityName) {
         return heroRepository
                 .findAllByCity_NameIgnoreCase(cityName)
                 .stream()

@@ -1,7 +1,7 @@
 package ie.spring.version11jpa.controllers;
 
-import ie.spring.version11jpa.dtos.CityDTO;
-import ie.spring.version11jpa.dtos.HeroDTO;
+import ie.spring.version11jpa.dtos.PlanetDto;
+import ie.spring.version11jpa.dtos.MoonDto;
 import ie.spring.version11jpa.dtos.Name;
 import ie.spring.version11jpa.services.CityService;
 import ie.spring.version11jpa.services.HeroService;
@@ -19,12 +19,12 @@ public class RestService {
     private CityService cityService;
 
     @GetMapping("/heroes")
-    List<HeroDTO> findAllHeroes(){
+    List<MoonDto> findAllHeroes(){
         return heroService.findAll();
     }
 
     @GetMapping("/cities")
-    List<CityDTO> findAllCities(){
+    List<PlanetDto> findAllCities(){
         return cityService.findAll();
     }
 
@@ -39,7 +39,7 @@ public class RestService {
     }
 
     @GetMapping("/heroes/city/{cityName}")
-    List<HeroDTO> findAllHeroesByCity(@PathVariable String cityName){
+    List<MoonDto> findAllHeroesByCity(@PathVariable String cityName){
         return heroService.findAllInCity(cityName);
     }
 

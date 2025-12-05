@@ -1,6 +1,6 @@
 package ie.spring.version11jpa.services;
 
-import ie.spring.version11jpa.dtos.CityDTO;
+import ie.spring.version11jpa.dtos.PlanetDto;
 import ie.spring.version11jpa.dtos.Mappers;
 import ie.spring.version11jpa.exceptions.NotFoundException;
 import ie.spring.version11jpa.repositories.CityRepository;
@@ -14,9 +14,9 @@ import java.util.List;
 public class CityServiceImpl implements CityService {
     private CityRepository cityRepository;
 
-    public List<CityDTO> findAll() {
+    public List<PlanetDto> findAll() {
         return cityRepository.findAll().stream()
-                .map(Mappers::mapCityToCityDTO)
+                .map(Mappers::mapPlanetToPlanetDTO)
                 .toList();
     }
 

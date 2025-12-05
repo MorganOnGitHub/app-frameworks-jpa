@@ -1,5 +1,6 @@
 package ie.spring.version11jpa.entities;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +20,10 @@ public class Planet {
     @Column(nullable=false, unique=true)
     private String name;
     @Column(nullable=false, unique=true)
-    private String country;
+    private String type;
+    private float radiusKm;
+    private float massKg;
+    private float orbitalPeriodDays;
 
     @OneToMany(mappedBy = "planet",  fetch = FetchType.LAZY)
     private List<Moon> moons;
