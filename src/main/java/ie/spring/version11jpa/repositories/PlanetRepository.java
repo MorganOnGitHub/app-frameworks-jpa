@@ -7,9 +7,17 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-public interface CityRepository extends JpaRepository<Planet, Integer> {
+import java.util.List;
+
+public interface PlanetRepository extends JpaRepository<Planet, Integer> {
+
+
     @Modifying
     @Transactional
-    @Query("DELETE FROM Planet c WHERE c.planetId = :id")
+    @Query("DELETE FROM Planet p WHERE p.planetId = :id")
     int deleteById(@Param("id") int id);
+
+    @Query("SELECT p FROM Planet p WHERE p.type = :type")
+    List<Planet> findByType(@Param("type") String type);
+
 }

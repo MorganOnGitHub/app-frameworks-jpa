@@ -9,4 +9,3 @@ public record MoonDto(
         float orbitalPeriodDays,
         Planet planet
 ) {}
-
