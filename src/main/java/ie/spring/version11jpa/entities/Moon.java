@@ -9,19 +9,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name="heroes")
-public class Hero {
+@Table(name="moons")
+public class Moon {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int heroId;
-    private String firstName;
-    private String lastName;
-    private String alias;
-    private String origin;
-    private String universe;
-    private int yearCreated;
+    private int moonId;
+    private String name;
+    private int diameterKm;
+    private int orbitalPeriodDays;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="city_id")
-    private City city;
+    @JoinColumn(name="planet_id")
+    private Planet planet;
 }

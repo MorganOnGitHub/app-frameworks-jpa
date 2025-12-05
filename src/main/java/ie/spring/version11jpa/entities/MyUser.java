@@ -1,26 +1,25 @@
 package ie.spring.version11jpa.entities;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Entity
-@Table(name="cities")
+@Table(name= "my_users")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class City {
+@NoArgsConstructor
+public class MyUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int cityId;
+    private int user_id;
     @Column(nullable=false, unique=true)
-    private String name;
-    @Column(nullable=false, unique=true)
-    private String country;
+    private String username;
+    private String password;
+    private String enabled;
+    private String unlocked;
+    private String role;
 
-    @OneToMany(mappedBy = "city",  fetch = FetchType.LAZY)
-    private List<Hero> heroes;
 }

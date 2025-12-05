@@ -1,46 +1,46 @@
 package ie.spring.version11jpa.dtos;
 
-import ie.spring.version11jpa.entities.City;
-import ie.spring.version11jpa.entities.Hero;
+import ie.spring.version11jpa.entities.Planet;
+import ie.spring.version11jpa.entities.Moon;
 
 import java.util.List;
 
 public class Mappers {
 
-    public static HeroDTO mapHeroToHeroDTO(Hero h){
+    public static HeroDTO mapHeroToHeroDTO(Moon h){
         return new HeroDTO(
-                h.getHeroId(),
-                h.getFirstName()+ " " + h.getLastName(),
+                h.getMoonId(),
+                h.getName()+ " " + h.getLastName(),
                 h.getAlias(),
                 h.getOrigin(),
                 h.getUniverse(),
-                h.getYearCreated(),
-                h.getCity() != null ?
-                new CityDTO(h.getCity().getCityId(), h.getCity().getName(), h.getCity().getCountry(), null)
+                h.getDiameterKm(),
+                h.getPlanet() != null ?
+                new CityDTO(h.getPlanet().getPlanetId(), h.getPlanet().getName(), h.getPlanet().getCountry(), null)
                 : null
         );
     }
 
-    public static HeroDTO mapHeroToHeroDTONoCity(Hero h){
+    public static HeroDTO mapHeroToHeroDTONoCity(Moon h){
         return new HeroDTO(
-                h.getHeroId(),
-                h.getFirstName()+ " " + h.getLastName(),
+                h.getMoonId(),
+                h.getName()+ " " + h.getLastName(),
                 h.getAlias(),
                 h.getOrigin(),
                 h.getUniverse(),
-                h.getYearCreated(),
+                h.getDiameterKm(),
                 null
         );
     }
 
-    public static CityDTO mapCityToCityDTO(City c){
+    public static CityDTO mapCityToCityDTO(Planet c){
         List<HeroDTO> heroDTOs =
-                c.getHeroes()
+                c.getMoons()
                 .stream()
                 .map(Mappers::mapHeroToHeroDTONoCity)
                 .toList();
         return new CityDTO(
-                c.getCityId(),
+                c.getPlanetId(),
                 c.getName(),
                 c.getCountry(),
                 heroDTOs);
