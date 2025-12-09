@@ -9,8 +9,6 @@ public interface MoonService {
     void save(Moon moon);
     List<MoonDto> findAll();
     MoonDto findById(Integer id);
-    //    List<Name> findAllNames();
-//    List<String> findAllAlias();
     void deleteById(Integer id);
     List<MoonDto> findAllByPlanet(String planetName);
 }

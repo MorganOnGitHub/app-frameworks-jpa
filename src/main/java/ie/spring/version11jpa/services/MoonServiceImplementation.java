@@ -35,15 +35,6 @@ public class MoonServiceImplementation implements MoonService {
         return Mappers.mapMoonToMoonDTO(moon.get());
     }
 
-//    @Override
-//    public List<Name> findAllNames() {
-//        return moonRepository.findAllName();
-//    }
-//
-//    @Override
-//    public List<String> findAllAlias() {
-//        return moonRepository.findAllAlias();
-//    }
 
     @Override
     public void deleteById(Integer id) {
