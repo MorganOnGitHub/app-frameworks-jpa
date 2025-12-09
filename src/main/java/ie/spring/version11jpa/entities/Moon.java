@@ -13,12 +13,12 @@ import lombok.NoArgsConstructor;
 public class Moon {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int moonId;
+    private Integer moonId;
     private String name;
     private float diameterKm;
     private float orbitalPeriodDays;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="planet_id")
     private Planet planet;
 }

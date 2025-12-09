@@ -1,6 +1,7 @@
 package ie.spring.version11jpa.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,5 +27,6 @@ public class Planet {
     private float orbitalPeriodDays;
 
     @OneToMany(mappedBy = "planet",  fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Moon> moons;
 }

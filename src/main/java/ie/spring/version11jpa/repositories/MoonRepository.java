@@ -1,5 +1,6 @@
 package ie.spring.version11jpa.repositories;
 
+import ie.spring.version11jpa.dtos.MoonDto;
 import ie.spring.version11jpa.entities.Moon;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -8,7 +9,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface MoonRepository extends JpaRepository<Moon, Integer> {
 //    List<Moon> findByUniverseIgnoreCaseOrderByAliasDesc(String universe);
@@ -22,7 +22,7 @@ public interface MoonRepository extends JpaRepository<Moon, Integer> {
     @Query("DELETE FROM Moon m WHERE m.moonId = :id")
     int deleteById(@Param("id") int id);
 
-    @Query("SELECT m FROM Moon m WHERE m.planet.planetId = :planetId")
-    List<Moon> findByPlanetId(@Param("planetId") int planetId);
+//    @Query("SELECT m FROM Moon m WHERE m.planet.planetId = :planetId")
+//    List<Moon> findByPlanetId(@Param("planetId") int planetId);
 
 }
