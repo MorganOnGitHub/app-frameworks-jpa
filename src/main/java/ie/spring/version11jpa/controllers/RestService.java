@@ -63,17 +63,6 @@ public class RestService {
     }
 
 
-//    @GetMapping("/moons/alias")
-//    @ResponseStatus(HttpStatus.OK)
-//    public List<String> findAllAliases() {
-//        return moonService.findAllAlias();
-//    }
-
-//    @GetMapping("/moons/names")
-//    @ResponseStatus(HttpStatus.OK)
-//    public List<Name> findAllNames() {
-//        return moonService.findAllNames();
-//    }
 
     @GetMapping("/moons/planet/{planetName}")
     @ResponseStatus(HttpStatus.OK)

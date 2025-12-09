@@ -11,18 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface MoonRepository extends JpaRepository<Moon, Integer> {
-//    List<Moon> findByUniverseIgnoreCaseOrderByAliasDesc(String universe);
 
     List<Moon> findAllByPlanet_NameIgnoreCase(String planetName);
-
-    // The provided deleteById() returns void.
-    // I need it to return int. So I create my own.
-    @Transactional
-    @Modifying
-    @Query("DELETE FROM Moon m WHERE m.moonId = :id")
-    int deleteById(@Param("id") int id);
-
-//    @Query("SELECT m FROM Moon m WHERE m.planet.planetId = :planetId")
-//    List<Moon> findByPlanetId(@Param("planetId") int planetId);
 
 }
