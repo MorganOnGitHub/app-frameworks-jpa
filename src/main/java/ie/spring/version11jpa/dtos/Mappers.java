@@ -43,6 +43,25 @@ public class Mappers {
                 moonDtos);
     }
 
+    public static Planet mapNewPlanetDtoToPlanet(NewPlanetDto newPlanetDto) {
+        Planet planet = new Planet();
+        planet.setName(newPlanetDto.name());
+        planet.setType(newPlanetDto.type());
+        planet.setRadiusKm(newPlanetDto.radiusKm());
+        planet.setMassKg(newPlanetDto.massKg());
+        planet.setOrbitalPeriodDays(newPlanetDto.orbitalPeriodDays());
+        return planet;
+    }
+
+    public static Moon mapNewMoonDtoToMoon(NewMoonDto newMoonDto, Planet planet) {
+        Moon moon = new Moon();
+        moon.setName(newMoonDto.name());
+        moon.setDiameterKm(newMoonDto.diameterKm());
+        moon.setOrbitalPeriodDays(newMoonDto.orbitalPeriodDays());
+        moon.setPlanet(planet);
+        return moon;
+    }
+
 
 }
 

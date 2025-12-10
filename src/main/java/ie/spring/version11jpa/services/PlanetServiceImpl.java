@@ -41,9 +41,8 @@ public class PlanetServiceImpl implements PlanetService {
 
     @Override
     public void deleteById(int id) {
-        if(!planetRepository.existsById(id)) {
-            throw new NotFoundException("Planet with planetId " + id + " was not found");
-        }
+        planetRepository.findById(id)
+                        .orElseThrow(() -> new NotFoundException("Planet Not Found"));
         planetRepository.deleteById(id);
     }
 
@@ -52,5 +51,14 @@ public class PlanetServiceImpl implements PlanetService {
         return planetRepository.findByType(type).stream()
                 .map(Mappers::mapPlanetToPlanetDTO)
                 .toList();
+    }
+
+    @Override
+    public void updateOrbitalPeriodDays(Integer id, float orbitalPeriodDays) {
+        Planet planet = planetRepository
+                .findById(id)
+                .orElseThrow(() -> new NotFoundException("Planet Not Found"));
+        planet.setOrbitalPeriodDays(orbitalPeriodDays);
+        planetRepository.save(planet);
     }
 }

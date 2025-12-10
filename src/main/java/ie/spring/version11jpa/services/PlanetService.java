@@ -11,4 +11,5 @@ public interface PlanetService {
     PlanetDto findById(Integer id);
     void deleteById(int id);
     List<PlanetDto> findByType(String type);
+    void updateOrbitalPeriodDays(Integer id, float orbitalPeriodDays);
 }

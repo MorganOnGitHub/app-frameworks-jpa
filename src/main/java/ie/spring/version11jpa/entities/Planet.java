@@ -20,7 +20,6 @@ public class Planet {
     private int planetId;
     @Column(nullable=false, unique=true)
     private String name;
-    @Column(nullable=false, unique=true)
     private String type;
     private float radiusKm;
     private float massKg;

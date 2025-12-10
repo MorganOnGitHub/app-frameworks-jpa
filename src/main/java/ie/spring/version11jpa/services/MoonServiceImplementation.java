@@ -38,9 +38,8 @@ public class MoonServiceImplementation implements MoonService {
 
     @Override
     public void deleteById(Integer id) {
-        if (!moonRepository.existsById(id)){
-            throw new NotFoundException("Moon with id " + id + "was not found");
-        }
+        moonRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Moon Not Found"));
         moonRepository.deleteById(id);
     }
 

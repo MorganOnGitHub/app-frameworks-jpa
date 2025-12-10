@@ -1,12 +1,13 @@
 package ie.spring.version11jpa.controllers;
 
-import ie.spring.version11jpa.dtos.Mappers;
-import ie.spring.version11jpa.dtos.PlanetDto;
-import ie.spring.version11jpa.dtos.MoonDto;
+import ie.spring.version11jpa.dtos.*;
 import ie.spring.version11jpa.entities.Moon;
 import ie.spring.version11jpa.entities.Planet;
+import ie.spring.version11jpa.exceptions.NotFoundException;
+import ie.spring.version11jpa.repositories.PlanetRepository;
 import ie.spring.version11jpa.services.PlanetService;
 import ie.spring.version11jpa.services.MoonService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import java.util.List;
 @RequestMapping("/api")
 @AllArgsConstructor
 public class RestService {
+    private final PlanetRepository planetRepository;
     private MoonService moonService;
     private PlanetService planetService;
 
@@ -34,13 +36,17 @@ public class RestService {
 
     @PostMapping("/planets")
     @ResponseStatus(HttpStatus.CREATED)
-    void save(@RequestBody Planet planet) {
+    void save(@Valid @RequestBody NewPlanetDto newPlanetDto) {
+        Planet planet = Mappers.mapNewPlanetDtoToPlanet(newPlanetDto);
         planetService.save(planet);
     }
 
     @PostMapping("/moons")
     @ResponseStatus(HttpStatus.CREATED)
-    void save(@RequestBody Moon moon) {
+    void save(@Valid @RequestBody NewMoonDto newMoonDto) {
+        Planet planet = planetRepository.findById(newMoonDto.planetId())
+                .orElseThrow( () -> new NotFoundException("Planet not found."));
+        Moon moon = Mappers.mapNewMoonDtoToMoon(newMoonDto, planet);
         moonService.save(moon);
     }
 
@@ -52,7 +58,7 @@ public class RestService {
 
     @GetMapping("/planets/type/{type}")
     @ResponseStatus(HttpStatus.OK)
-    List<PlanetDto> findByType(@PathVariable String type){
+    List<PlanetDto> findByType(@PathVariable("type") String type){
         return planetService.findByType(type);
     }
 
@@ -66,7 +72,7 @@ public class RestService {
 
     @GetMapping("/moons/planet/{planetName}")
     @ResponseStatus(HttpStatus.OK)
-    List<MoonDto> findAllMoonsByPlanet(@PathVariable String planetName){
+    List<MoonDto> findAllMoonsByPlanet(@PathVariable("planetName") String planetName){
         return moonService.findAllByPlanet(planetName);
     }
 
@@ -76,11 +82,6 @@ public class RestService {
         return moonService.findAllByPlanet(planetName).size();
     }
 
-//    @DeleteMapping("/planets/{id}")
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    void deleteCityById(@PathVariable int id){
-//        planetService.deleteById(id);
-//    }
 
     @DeleteMapping("/moons/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -94,8 +95,7 @@ public class RestService {
 
     @PatchMapping("/planets/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void updatePlanetById(@PathVariable("id") Integer id, @RequestBody Planet planet) {
-        planet.setPlanetId(id);
-        planetService.save(planet);
+    void updatePlanetById(@PathVariable("id") Integer id, @Valid @RequestBody NewPlanetDto newPlanetDto) {
+        planetService.updateOrbitalPeriodDays(id, newPlanetDto.orbitalPeriodDays());
     }
 }

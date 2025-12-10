@@ -1,7 +1,7 @@
 
 CREATE TABLE planets (
                          planet_id INT PRIMARY KEY AUTO_INCREMENT,
-                         name VARCHAR(50),
+                         name VARCHAR(50) UNIQUE,
                          type VARCHAR(50),
                          radius_km FLOAT,
                          mass_kg FLOAT,
@@ -11,7 +11,7 @@ CREATE TABLE planets (
 CREATE TABLE moons (
                        moon_id INT PRIMARY KEY AUTO_INCREMENT,
                        planet_id INT NOT NULL,
-                       name VARCHAR(50),
+                       name VARCHAR(50) UNIQUE,
                        diameter_km FLOAT,
                        orbital_period_days FLOAT,
                        CONSTRAINT fk_planet FOREIGN KEY (planet_id)
