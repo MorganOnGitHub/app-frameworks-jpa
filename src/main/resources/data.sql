@@ -44,3 +44,10 @@ INSERT INTO moons (name, diameter_km, orbital_period_days, planet_id) VALUES
 -- Neptune's major moons
 ('Triton', 2706.8, 5.877, 8),
 ('Proteus', 420.0, 1.122, 8);
+
+INSERT INTO my_users (username, password, enabled, unlocked, role) VALUES
+('admin','$2a$12$TyZyF8qlubhLg13tQjUum.burhvBMzyX.J1GUcUHlOqn6MOWSvxXS',true, true, 'ROLE_ADMIN'), -- password1
+('john', '$2a$12$TyZyF8qlubhLg13tQjUum.burhvBMzyX.J1GUcUHlOqn6MOWSvxXS',true, true, 'ROLE_STAFF'),
+('amy', '$2a$12$TyZyF8qlubhLg13tQjUum.burhvBMzyX.J1GUcUHlOqn6MOWSvxXS',true, true, 'ROLE_STUDENT'),
+('maria', '$2a$12$TyZyF8qlubhLg13tQjUum.burhvBMzyX.J1GUcUHlOqn6MOWSvxXS', true, true, 'ROLE_STAFF'),
+('lee', '$2a$12$TyZyF8qlubhLg13tQjUum.burhvBMzyX.J1GUcUHlOqn6MOWSvxXS', false, false, 'ROLE_STUDENT');

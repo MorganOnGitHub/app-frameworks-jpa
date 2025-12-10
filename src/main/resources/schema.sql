@@ -20,3 +20,10 @@ CREATE TABLE moons (
                            ON UPDATE CASCADE
 );
 
+CREATE TABLE my_users (
+                      username VARCHAR(200) PRIMARY KEY NOT NULL,
+                      password VARCHAR(200) NOT NULL,
+                      enabled BOOLEAN NOT NULL,
+                      unlocked BOOLEAN NOT NULL,
+                      role VARCHAR(20)
+);

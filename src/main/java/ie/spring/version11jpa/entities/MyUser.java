@@ -13,13 +13,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MyUser {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int user_id;
     @Column(nullable=false, unique=true)
     private String username;
     private String password;
-    private String enabled;
-    private String unlocked;
+    private Boolean enabled;
+    private Boolean unlocked;
     private String role;
 
 }
