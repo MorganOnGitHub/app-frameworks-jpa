@@ -17,7 +17,7 @@ public class MyAspects {
         log.info("Before execution of " + joinPoint.getSignature().getName());
     }
 
-    @Pointcut("execution( findById(..))")
+    @Pointcut("execution(* findById(..))")
     public void findByIdMethod() {
     }
 
